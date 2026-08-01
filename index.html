@@ -261,7 +261,7 @@
 <!-- ===== VORTEX HERO ===== -->
 <section class="vortex-track" id="hero">
   <div class="stage">
-    <div class="staticHero"><img src="images/s4.jpg?v=2" alt="A senior portrait in warm evening light"></div>
+    <div class="staticHero"><img src="images/s1.jpg?v=2" alt="A senior portrait in soft daylight"></div>
     <div class="spiral" id="spiral"></div>
     <div class="hero-copy">
       <p class="eyebrow mono">Seniors · Families · Newborn — Northglenn, CO</p>
@@ -383,8 +383,8 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- vortex ---------- */
-  var IMGS = ['s4','f5','n6','s1','f2','n2','s3','f3','n1','s6','f1','n4','s2','f4','n5','s5','n3'];
-  var N = IMGS.length, PER = 0.36;
+  var IMGS = ['s1','s4','f5','n6','f2','n2','s3','f3','n1','s6','f1','n4','s2','f4','n5','s5','n3'];
+  var N = IMGS.length, PER = 0.42;
   var THETA = 46*Math.PI/180, DZ = 235, R = 660, K = 0.85;
   var spiral = document.getElementById('spiral');
   var stage = document.querySelector('.stage');
@@ -408,7 +408,10 @@
         var rect=track.getBoundingClientRect();
         var L=track.offsetHeight-innerHeight;
         var g=clamp(-rect.top/L,0,1);
-        var p=clamp(g/0.86,0,1)*(N-1);          // last photo lands at g=0.86
+        var t=clamp(g/0.86,0,1), u=t*(N-1);     // last photo lands at g=0.86
+        var base=Math.min(Math.floor(u),N-1), frac=u-base;
+        var HOLD=0.5, tr=clamp((frac-HOLD)/(1-HOLD),0,1); // 0 while lingering, then ramps to next
+        var p=base + tr*tr*tr*(tr*(tr*6-15)+10); // photo holds in focus, then eases (swipes) to the next
         stage.style.opacity=(1-clamp((g-0.86)/0.14,0,1)).toFixed(3); // dissolve completes exactly at track end
         for(var i=0;i<N;i++){
           var el=els[i], q=i-p, aq=Math.abs(q);

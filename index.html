@@ -261,7 +261,7 @@
 <!-- ===== VORTEX HERO ===== -->
 <section class="vortex-track" id="hero">
   <div class="stage">
-    <div class="staticHero"><img src="images/s1.jpg" alt="A senior portrait in dramatic light"></div>
+    <div class="staticHero"><img src="images/s4.jpg" alt="A senior portrait in warm evening light"></div>
     <div class="spiral" id="spiral"></div>
     <div class="hero-copy">
       <p class="eyebrow mono">Seniors · Families · Newborn — Northglenn, CO</p>
@@ -281,7 +281,7 @@
     <p class="lead-line reveal">We don't stage a moment. We <em>wait</em> for it — then hold it still, forever.</p>
     <p class="sub reveal">Pure Elements is a two-person studio out of Northglenn. We come to you — the mountains, your backyard, the hospital room an hour after — and we shoot until the real thing shows up.</p>
   </div>
-  <div class="statement-img reveal"><img src="images/s2.jpg" alt="A senior portrait in moody evening light"></div>
+  <div class="statement-img reveal"><img src="images/f2.jpg" alt="A couple at golden hour in tall autumn grass"></div>
 </section>
 
 <!-- ===== PORTFOLIO ===== -->
@@ -301,13 +301,13 @@
   <p class="eyebrow reveal">What we photograph</p>
   <h2 class="sec-title reveal" style="margin-top:12px;max-width:16ch">Three ways we help you keep it.</h2>
   <div class="svc-list reveal">
-    <a class="svc" href="#contact"><div class="bg"><img src="images/s4.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/s3.jpg" alt=""></div>
       <span class="num">01</span><span class="name">Senior Portraits</span>
       <span class="desc">Class-of sessions with real personality, at the spots that mean something to you.</span><span class="arrow">↗</span></a>
-    <a class="svc" href="#contact"><div class="bg"><img src="images/f1.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/f4.jpg" alt=""></div>
       <span class="num">02</span><span class="name">Families</span>
       <span class="desc">Unposed, warm, and quick enough for the little ones. Golden hour, always.</span><span class="arrow">↗</span></a>
-    <a class="svc" href="#contact"><div class="bg"><img src="images/n1.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/n5.jpg" alt=""></div>
       <span class="num">03</span><span class="name">Newborn</span>
       <span class="desc">In-home, gentle, on the baby's schedule — those impossibly small first days.</span><span class="arrow">↗</span></a>
   </div>
@@ -383,7 +383,7 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- vortex ---------- */
-  var IMGS = ['s1','n1','s3','f1','s4','n3','s2','s7','f3','s5','n2','s6','f5','n4','f2','s8'];
+  var IMGS = ['s4','f5','n6','s1','f2','n2','s3','f3','n1','s6','f1','n4','s2','f4','n5','s5','n3'];
   var N = IMGS.length, PER = 0.36;
   var THETA = 46*Math.PI/180, DZ = 235, R = 660, K = 0.85;
   var spiral = document.getElementById('spiral');
@@ -435,12 +435,12 @@
   /* ---------- portfolio grid ---------- */
   var GAL = [
     ['f3','c-wide','Families · Golden light'], ['s1','c-tall','Seniors · Class of'],
-    ['s3','c-third','Seniors · The tassel'], ['n1','c-third','Newborn · Held close'],
-    ['s4','c-third','Seniors · Attitude'],
-    ['f2','c-full','Families · Together'],
-    ['n3','c-third','Newborn · So small'], ['s5','c-third','Seniors · Last light'],
-    ['s6','c-third','Seniors · The city'],
-    ['s8','c-third','Seniors · Golden fields'], ['s2','c-third','Seniors · Blue hour'], ['f5','c-third','Families · Little one']
+    ['s3','c-third','Seniors · Color & grit'], ['n1','c-third','Newborn · Held close'],
+    ['s4','c-third','Seniors · The look'],
+    ['f2','c-full','Families · Golden hour'],
+    ['n2','c-third','Newborn · So small'], ['s5','c-third','Seniors · Out walking'],
+    ['s6','c-third','Seniors · Autumn light'],
+    ['n6','c-third','Little one · All smiles'], ['s2','c-third','Seniors · Golden'], ['f5','c-third','Families · Together']
   ];
   var grid=document.getElementById('grid');
   GAL.forEach(function(it){

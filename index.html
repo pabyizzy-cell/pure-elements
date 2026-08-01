@@ -77,9 +77,16 @@
     background:radial-gradient(120% 92% at 50% 42%, transparent 42%, rgba(6,8,11,.6) 100%)}
   .spiral{position:absolute;inset:0;transform-style:preserve-3d}
   .vimg{position:absolute;left:50%;top:50%;width:340px;height:468px;margin:-234px 0 0 -170px;
-    backface-visibility:hidden;overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 0 1px rgba(244,241,245,.08)}
-  .vimg img{width:100%;height:100%;object-fit:cover}
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform;
+    box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vimg .glow{position:absolute;left:50%;top:50%;width:158%;height:152%;transform:translate(-50%,-50%);
+    border-radius:50%;pointer-events:none;z-index:0;opacity:0;will-change:opacity;
+    background:radial-gradient(closest-side, rgba(233,2,112,.82), rgba(233,2,112,.30) 46%, transparent 72%);
+    filter:blur(34px)}
+  .vimg .pic{position:absolute;inset:0;z-index:1;overflow:hidden;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);
+    box-shadow:inset 0 0 0 1px rgba(244,241,245,.08)}
+  .vimg .pic img{width:100%;height:100%;object-fit:cover;backface-visibility:hidden}
   .hero-copy{position:absolute;z-index:7;left:var(--pad);bottom:13vh;max-width:46vw;pointer-events:none}
   .hero-copy .eyebrow{color:var(--pink);margin-bottom:20px}
   .hero-copy h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,8.2vw,116px);
@@ -402,15 +409,18 @@
   var spiral = document.getElementById('spiral');
   var stage = document.querySelector('.stage');
   var track = document.getElementById('hero');
-  var els = [];
+  var els = [], glows = [], pics = [];
   function clamp(v,a,b){return v<a?a:(v>b?b:v);}
   function smooth(t){t=clamp(t,0,1);return t*t*(3-2*t);}
 
   if(!reduce){
     IMGS.forEach(function(name){
       var d=document.createElement('div'); d.className='vimg';
+      var glow=document.createElement('div'); glow.className='glow';
+      var pic=document.createElement('div'); pic.className='pic';
       var im=new Image(); im.src='images/'+name+'.jpg?v=2'; im.alt='';
-      d.appendChild(im); spiral.appendChild(d); els.push(d);
+      pic.appendChild(im); d.appendChild(glow); d.appendChild(pic);
+      spiral.appendChild(d); els.push(d); glows.push(glow); pics.push(pic);
     });
     var vprog=document.getElementById('vprog'), segs=[];
     for(var s=0;s<N;s++){ var sg=document.createElement('span'); sg.className='seg';
@@ -436,20 +446,20 @@
         cue.style.opacity=(1-clamp(g*8,0,1)).toFixed(2); // scroll cue fades once scrolling begins
         for(var i=0;i<N;i++){
           var el=els[i], q=i-p, aq=Math.abs(q);
-          if(aq>6){ el.style.visibility='hidden'; el.style.willChange='auto'; continue; }
+          if(aq>6){ if(el.style.visibility!=='hidden')el.style.visibility='hidden'; continue; }
           el.style.visibility='visible';
           var theta=q*THETA, z=-aq*DZ, r=R*(1-Math.exp(-aq*K));
           var x=r*Math.cos(theta), y=r*Math.sin(theta)*0.74, tilt=-theta*0.35;
           var focal=aq<0.5, extraZ=focal?60:0, sc=focal?(1+0.16*(1-aq/0.5)):1;
           el.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+(z+extraZ).toFixed(1)+'px) rotateZ('+tilt.toFixed(2)+'deg) scale('+sc.toFixed(3)+')';
+          var zi=Math.round(500-aq*80); if(el._z!==zi){ el.style.zIndex=zi; el._z=zi; }
           var f=smooth(1-clamp(aq/1.5,0,1));
-          var blur=(1-f)*4; if(f>0.985)blur=0;
+          var blur=(1-f)*4;                                   // 0 at focus; always keep blur() in the string (no flicker on toggle)
           var bright=0.5+0.5*f, sat=0.75+0.25*f;
           var fog=clamp(1-aq*DZ/4600,0.3,1), op=focal?1:(0.4+0.6*f)*fog;
-          el.style.filter=blur>0.05?('blur('+blur.toFixed(2)+'px) brightness('+bright.toFixed(2)+') saturate('+sat.toFixed(2)+')'):('brightness('+bright.toFixed(2)+') saturate('+sat.toFixed(2)+')');
-          el.style.opacity=op.toFixed(3);
-          el.style.zIndex=String(Math.round(500-aq*80));
-          el.style.willChange=aq<3?'transform,filter':'auto';
+          pics[i].style.filter='blur('+blur.toFixed(2)+'px) brightness('+bright.toFixed(2)+') saturate('+sat.toFixed(2)+')';
+          pics[i].style.opacity=op.toFixed(3);
+          glows[i].style.opacity=(0.6*Math.exp(-(aq*aq)/0.42)).toFixed(3); // magenta bell: nothing → full at focus → nothing
         }
       }
       requestAnimationFrame(frame);

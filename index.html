@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="gfonts.css">
 <style>
   :root{
-    --ink:#0C0F14; --surface:#151A21; --hairline:#242B34;
-    --porcelain:#EDE7DB; --ash:#948D82; --brass:#C29B5A;
+    --ink:#0A090C; --surface:#141216; --hairline:#2A2530;
+    --porcelain:#F4F1F5; --ash:#9A929E; --pink:#E90270; --pink-2:#FF3D9E;
     --serif:"Fraunces",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,monospace;
     --ease:cubic-bezier(.22,1,.36,1);
@@ -21,7 +21,7 @@
     font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit}
   img{display:block;max-width:100%}
-  ::selection{background:var(--brass);color:#1a1206}
+  ::selection{background:var(--pink);color:#0A090C}
   .mono{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
   .serif{font-family:var(--serif)}
   h1,h2,h3{font-weight:400;text-wrap:balance}
@@ -34,35 +34,33 @@
 
   /* ---------- nav ---------- */
   .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:28px;
-    padding:16px var(--pad);background:rgba(12,15,20,.5);backdrop-filter:saturate(1.3) blur(14px);
-    border-bottom:1px solid rgba(36,43,52,.7);transition:background .4s}
-  .nav .wordmark{font-family:var(--serif);font-size:22px;letter-spacing:.01em;text-decoration:none;
-    margin-right:auto;color:var(--porcelain)}
-  .nav .wordmark b{font-weight:400}
+    padding:16px var(--pad);background:rgba(10,9,12,.55);backdrop-filter:saturate(1.3) blur(14px);
+    border-bottom:1px solid rgba(233,2,112,.16);transition:background .4s}
+  .nav .wordmark{margin-right:auto;text-decoration:none;display:flex;align-items:center;line-height:0}
+  .nav .wordmark img{height:42px;width:auto;display:block}
   .nav a.link{text-decoration:none;color:var(--ash);font-size:14px;letter-spacing:.02em;transition:color .3s}
   .nav a.link:hover{color:var(--porcelain)}
   .nav .inquire{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.03em;
-    color:var(--brass);text-decoration:none;border:1px solid var(--brass);padding:9px 18px;border-radius:2px;
+    color:var(--pink);text-decoration:none;border:1px solid var(--pink);padding:9px 18px;border-radius:2px;
     transition:background .3s,color .3s}
-  .nav .inquire:hover{background:var(--brass);color:#1a1206}
+  .nav .inquire:hover{background:var(--pink);color:#0A090C}
   .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
   .nav-toggle span{display:block;width:22px;height:1.5px;background:var(--porcelain);transition:transform .3s,opacity .3s}
   .nav-toggle.x span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
   .nav-toggle.x span:nth-child(2){opacity:0}
   .nav-toggle.x span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-  .nav-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:49;background:rgba(12,15,20,.97);
+  .nav-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:49;background:rgba(8,7,10,.97);
     backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline);flex-direction:column;padding:4px var(--pad) 24px}
   .nav-menu a{padding:16px 0;color:var(--porcelain);text-decoration:none;font-family:var(--serif);
     font-size:24px;border-bottom:1px solid var(--hairline)}
-  .nav-menu a:last-child{color:var(--brass);border-bottom:0}
+  .nav-menu a:last-child{color:var(--pink);border-bottom:0}
   .nav-menu.open{display:flex}
   @media(max-width:820px){
     .nav a.link,.nav .inquire{display:none}
     .nav-toggle{display:flex}
-    .nav .wordmark b{display:none}
+    .nav .wordmark img{height:34px}
     .nav{padding:14px var(--pad)}
     .hero-copy{max-width:82vw}
-    .scrollhint{display:none}
   }
   @media(max-width:640px){
     .gallery .grid{grid-template-columns:1fr;gap:10px}
@@ -80,22 +78,35 @@
   .spiral{position:absolute;inset:0;transform-style:preserve-3d}
   .vimg{position:absolute;left:50%;top:50%;width:340px;height:468px;margin:-234px 0 0 -170px;
     backface-visibility:hidden;overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 0 0 1px rgba(237,231,219,.07)}
+    box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 0 1px rgba(244,241,245,.08)}
   .vimg img{width:100%;height:100%;object-fit:cover}
   .hero-copy{position:absolute;z-index:7;left:var(--pad);bottom:13vh;max-width:46vw;pointer-events:none}
-  .hero-copy .eyebrow{color:var(--brass);margin-bottom:20px}
+  .hero-copy .eyebrow{color:var(--pink);margin-bottom:20px}
   .hero-copy h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,8.2vw,116px);
     line-height:.93;letter-spacing:-.012em}
   .hero-copy h1 em{font-style:italic}
-  .scrollhint{position:absolute;z-index:7;right:var(--pad);bottom:13vh;text-align:right;color:var(--ash);
-    pointer-events:none}
-  .scrollhint .bar{width:1px;height:56px;margin:12px 0 0 auto;background:linear-gradient(var(--brass),transparent)}
+  /* linger progress bar */
+  .vprog{position:absolute;z-index:8;left:var(--pad);right:var(--pad);bottom:30px;
+    display:flex;gap:6px;height:3px;pointer-events:none}
+  .vprog .seg{flex:1;background:rgba(244,241,245,.13);border-radius:3px;overflow:hidden}
+  .vprog .seg i{display:block;height:100%;transform:scaleX(0);transform-origin:left;
+    background:var(--pink);border-radius:3px;box-shadow:0 0 10px rgba(233,2,112,.6)}
+  /* scroll cue */
+  .scrollcue{position:absolute;z-index:8;left:50%;bottom:52px;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;
+    transition:opacity .5s var(--ease)}
+  .scrollcue .mouse{width:23px;height:37px;border:1.5px solid rgba(244,241,245,.55);border-radius:12px;
+    position:relative;display:block}
+  .scrollcue .mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;
+    margin-left:-1.5px;border-radius:2px;background:var(--pink);animation:wheel 1.7s var(--ease) infinite}
+  .scrollcue .lbl{font-size:10px;letter-spacing:.3em;color:var(--ash)}
+  @keyframes wheel{0%{opacity:0;transform:translateY(0)}25%{opacity:1}70%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(12px)}}
   .staticHero{display:none}
 
   /* ---------- generic section ---------- */
   section{position:relative;z-index:1}
   .band{max-width:1280px;margin:0 auto;padding:0 var(--pad)}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
   .sec-title{font-family:var(--serif);font-size:clamp(32px,4.6vw,56px);line-height:1.04;letter-spacing:-.005em}
 
   /* reveal / "develop" */
@@ -110,7 +121,7 @@
     letter-spacing:.2em;text-transform:uppercase;font-weight:400}
   .statement .lead-line{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.9vw,50px);
     line-height:1.22;max-width:18ch;letter-spacing:-.005em}
-  .statement .lead-line em{font-style:italic;color:var(--brass)}
+  .statement .lead-line em{font-style:italic;color:var(--pink)}
   .statement .sub{font-family:var(--sans);font-size:19px;color:var(--ash);max-width:46ch;
     margin-top:30px;line-height:1.6}
   .statement-img{aspect-ratio:3/4;overflow:hidden;background:var(--surface);
@@ -148,7 +159,7 @@
   .svc .bg{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .6s var(--ease)}
   .svc .bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.9)}
   .svc:hover .bg{opacity:1}
-  .svc .num{font-family:var(--mono);font-size:12px;color:var(--brass);position:relative;z-index:1;
+  .svc .num{font-family:var(--mono);font-size:12px;color:var(--pink);position:relative;z-index:1;
     width:3ch;flex:none;padding-top:10px}
   .svc .name{font-family:var(--serif);font-size:clamp(28px,4.2vw,52px);font-weight:400;position:relative;z-index:1;
     line-height:1;flex:1;transition:transform .5s var(--ease)}
@@ -157,7 +168,7 @@
     letter-spacing:.16em;margin-top:12px}
   .svc .desc{position:relative;z-index:1;color:var(--ash);max-width:30ch;font-size:15.5px;text-align:right;
     align-self:center}
-  .svc .arrow{position:relative;z-index:1;color:var(--brass);opacity:0;transform:translateX(-8px);
+  .svc .arrow{position:relative;z-index:1;color:var(--pink);opacity:0;transform:translateX(-8px);
     transition:.5s var(--ease);align-self:center;font-size:20px}
   .svc:hover .arrow{opacity:1;transform:none}
   .svc:hover .desc{color:var(--porcelain)}
@@ -183,7 +194,7 @@
   .contact .lead{color:var(--ash);max-width:34ch;margin:22px 0 40px;font-size:19px}
   .contact .phone{font-family:var(--serif);font-size:clamp(32px,4vw,52px);text-decoration:none;
     color:var(--porcelain);display:inline-block;line-height:1.05}
-  .contact .phone span{background-image:linear-gradient(var(--brass),var(--brass));
+  .contact .phone span{background-image:linear-gradient(var(--pink),var(--pink));
     background-size:0% 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s var(--ease);
     padding-bottom:6px}
   .contact .phone:hover span{background-size:100% 2px}
@@ -198,11 +209,11 @@
   form.inq input,form.inq select,form.inq textarea{width:100%;background:transparent;border:0;
     border-bottom:1px solid var(--hairline);color:var(--porcelain);font:inherit;font-size:16px;padding:8px 0;
     transition:border-color .3s}
-  form.inq input:focus,form.inq select:focus,form.inq textarea:focus{outline:none;border-color:var(--brass)}
+  form.inq input:focus,form.inq select:focus,form.inq textarea:focus{outline:none;border-color:var(--pink)}
   form.inq select{color:var(--porcelain)}
   form.inq option{background:var(--surface)}
   form.inq textarea{resize:vertical;min-height:70px}
-  form.inq button{margin-top:8px;width:100%;background:var(--brass);color:#1a1206;border:0;
+  form.inq button{margin-top:8px;width:100%;background:var(--pink);color:#0A090C;border:0;
     font:inherit;font-weight:700;font-size:15px;letter-spacing:.02em;padding:16px;cursor:pointer;
     transition:background .3s}
   form.inq button:hover{background:#d4ab68}
@@ -236,7 +247,8 @@
     .spiral{display:none}
     .staticHero{display:block;position:absolute;inset:0;z-index:0}
     .staticHero img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.95)}
-    .stage::after{background:linear-gradient(rgba(12,15,20,.25),rgba(12,15,20,.75))}
+    .stage::after{background:linear-gradient(rgba(10,9,12,.25),rgba(10,9,12,.78))}
+    .vprog,.scrollcue{display:none}
   }
 </style>
 </head>
@@ -245,7 +257,7 @@
 <div class="grain"></div>
 
 <nav class="nav" id="nav">
-  <a class="wordmark" href="#top">Pure&nbsp;Elements <b>Photography</b></a>
+  <a class="wordmark" href="#top" aria-label="Pure Elements Photography — home"><img src="images/logo.png" alt="Pure Elements Photography"></a>
   <a class="link" href="#work">Portfolio</a>
   <a class="link" href="#services">Services</a>
   <a class="link" href="#about">About</a>
@@ -267,9 +279,10 @@
       <p class="eyebrow mono">Seniors · Families · Newborn — Northglenn, CO</p>
       <h1>Light,<br><em>held</em> still.</h1>
     </div>
-    <div class="scrollhint">
-      <span class="mono">Scroll to develop</span>
-      <div class="bar"></div>
+    <div class="vprog" id="vprog" aria-hidden="true"></div>
+    <div class="scrollcue" id="scrollcue" aria-hidden="true">
+      <span class="mouse"></span>
+      <span class="lbl mono">Scroll</span>
     </div>
   </div>
 </section>
@@ -345,7 +358,7 @@
       <div class="meta">
         <a href="mailto:pureelementsphotos@gmail.com">pureelementsphotos@gmail.com</a>
         <span>Northglenn, CO · we travel the Front Range</span>
-        <span class="mono" style="margin-top:8px;color:var(--brass)">By appointment · 7 days</span>
+        <span class="mono" style="margin-top:8px;color:var(--pink)">By appointment · 7 days</span>
       </div>
     </div>
     <form class="inq reveal" id="inq" novalidate>
@@ -399,6 +412,10 @@
       var im=new Image(); im.src='images/'+name+'.jpg?v=2'; im.alt='';
       d.appendChild(im); spiral.appendChild(d); els.push(d);
     });
+    var vprog=document.getElementById('vprog'), segs=[];
+    for(var s=0;s<N;s++){ var sg=document.createElement('span'); sg.className='seg';
+      var fi=document.createElement('i'); sg.appendChild(fi); vprog.appendChild(sg); segs.push(fi); }
+    var cue=document.getElementById('scrollcue');
     track.style.height = ((N*PER)+0.15)*100 + 'vh';
     var dirty=true;
     addEventListener('scroll',function(){dirty=true;},{passive:true});
@@ -412,7 +429,11 @@
         var base=Math.min(Math.floor(u),N-1), frac=u-base;
         var HOLD=0.5, tr=clamp((frac-HOLD)/(1-HOLD),0,1); // 0 while lingering, then ramps to next
         var p=base + tr*tr*tr*(tr*(tr*6-15)+10); // photo holds in focus, then eases (swipes) to the next
-        stage.style.opacity=(1-clamp((g-0.86)/0.14,0,1)).toFixed(3); // dissolve completes exactly at track end
+        var d=clamp((g-0.86)/0.14,0,1);
+        stage.style.opacity=(1-d).toFixed(3); // dissolve completes exactly at track end
+        var prog=u+d;                          // active photo's own segment fills as it lingers
+        for(var s=0;s<N;s++) segs[s].style.transform='scaleX('+clamp(prog-s,0,1).toFixed(3)+')';
+        cue.style.opacity=(1-clamp(g*8,0,1)).toFixed(2); // scroll cue fades once scrolling begins
         for(var i=0;i<N;i++){
           var el=els[i], q=i-p, aq=Math.abs(q);
           if(aq>6){ el.style.visibility='hidden'; el.style.willChange='auto'; continue; }

@@ -261,7 +261,7 @@
 <!-- ===== VORTEX HERO ===== -->
 <section class="vortex-track" id="hero">
   <div class="stage">
-    <div class="staticHero"><img src="images/s4.jpg" alt="A senior portrait in warm evening light"></div>
+    <div class="staticHero"><img src="images/s4.jpg?v=2" alt="A senior portrait in warm evening light"></div>
     <div class="spiral" id="spiral"></div>
     <div class="hero-copy">
       <p class="eyebrow mono">Seniors · Families · Newborn — Northglenn, CO</p>
@@ -281,7 +281,7 @@
     <p class="lead-line reveal">We don't stage a moment. We <em>wait</em> for it — then hold it still, forever.</p>
     <p class="sub reveal">Pure Elements is a two-person studio out of Northglenn. We come to you — the mountains, your backyard, the hospital room an hour after — and we shoot until the real thing shows up.</p>
   </div>
-  <div class="statement-img reveal"><img src="images/f2.jpg" alt="A couple at golden hour in tall autumn grass"></div>
+  <div class="statement-img reveal"><img src="images/f2.jpg?v=2" alt="A couple at golden hour in tall autumn grass"></div>
 </section>
 
 <!-- ===== PORTFOLIO ===== -->
@@ -301,13 +301,13 @@
   <p class="eyebrow reveal">What we photograph</p>
   <h2 class="sec-title reveal" style="margin-top:12px;max-width:16ch">Three ways we help you keep it.</h2>
   <div class="svc-list reveal">
-    <a class="svc" href="#contact"><div class="bg"><img src="images/s3.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/s3.jpg?v=2" alt=""></div>
       <span class="num">01</span><span class="name">Senior Portraits</span>
       <span class="desc">Class-of sessions with real personality, at the spots that mean something to you.</span><span class="arrow">↗</span></a>
-    <a class="svc" href="#contact"><div class="bg"><img src="images/f4.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/f4.jpg?v=2" alt=""></div>
       <span class="num">02</span><span class="name">Families</span>
       <span class="desc">Unposed, warm, and quick enough for the little ones. Golden hour, always.</span><span class="arrow">↗</span></a>
-    <a class="svc" href="#contact"><div class="bg"><img src="images/n5.jpg" alt=""></div>
+    <a class="svc" href="#contact"><div class="bg"><img src="images/n5.jpg?v=2" alt=""></div>
       <span class="num">03</span><span class="name">Newborn</span>
       <span class="desc">In-home, gentle, on the baby's schedule — those impossibly small first days.</span><span class="arrow">↗</span></a>
   </div>
@@ -317,7 +317,7 @@
 <section class="about band" id="about">
   <div class="about-grid">
     <div class="about-portrait reveal">
-      <img src="images/s6.jpg" alt="The photographer behind Pure Elements">
+      <img src="images/s6.jpg?v=2" alt="The photographer behind Pure Elements">
       <span class="tag mono">Placeholder — your portrait here</span>
     </div>
     <div class="reveal">
@@ -396,7 +396,7 @@
   if(!reduce){
     IMGS.forEach(function(name){
       var d=document.createElement('div'); d.className='vimg';
-      var im=new Image(); im.src='images/'+name+'.jpg'; im.alt='';
+      var im=new Image(); im.src='images/'+name+'.jpg?v=2'; im.alt='';
       d.appendChild(im); spiral.appendChild(d); els.push(d);
     });
     track.style.height = ((N*PER)+0.15)*100 + 'vh';
@@ -445,7 +445,7 @@
   var grid=document.getElementById('grid');
   GAL.forEach(function(it){
     var a=document.createElement('div'); a.className='cell reveal '+it[1];
-    var im=new Image(); im.src='images/'+it[0]+'.jpg'; im.alt=it[2];
+    var im=new Image(); im.src='images/'+it[0]+'.jpg?v=2'; im.alt=it[2];
     var cap=document.createElement('span'); cap.className='cap'; cap.textContent=it[2];
     a.appendChild(im); a.appendChild(cap); grid.appendChild(a);
   });
